@@ -1,7 +1,5 @@
 package application;
 
-import object.Products;
-
 import java.util.Scanner;
 
 public class ClientMenu {

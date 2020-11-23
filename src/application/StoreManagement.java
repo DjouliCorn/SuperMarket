@@ -24,71 +24,54 @@ public class StoreManagement {
         myStore.getListOfProducts().add(product1);
         myStore.getListOfProducts().add(product2);
 
-        for (int i = 1; i < myStore.getListOfProducts().size(); i++) {
-            System.out.println(myStore.getListOfProducts().get(i).getIndex() + " " + myStore.getListOfProducts().get(i).getName() + " "
-                    + myStore.getListOfProducts().get(i).getQuantity() + " " + myStore.getListOfProducts().get(i).getPrice());
-        }
-
-
         chooseInTheListOfProducts();
 
     }
+
 
     public void chooseInTheListOfProducts() {
 
         int chooseItem;
         int chooseQuantity;
         int result;
+        //String continueShopping;
 
-        System.out.println("Choose an article or Quit (0) :");
+
+        for (int i = 1; i < myStore.getListOfProducts().size(); i++) {
+            System.out.println(myStore.getListOfProducts().get(i).getIndex() + " " + myStore.getListOfProducts().get(i).getName() + " "
+                    + myStore.getListOfProducts().get(i).getQuantity() + " " + myStore.getListOfProducts().get(i).getPrice());
+        }
+
+        /*System.out.println("Press any key, or q to quit :");
+
+        continueShopping = sc.nextLine();
+        if(!continueShopping.equalsIgnoreCase("q"))*/
+
         chooseItem = sc.nextInt();
 
-        /*for (int i = 1; i < myStore.getListOfProducts().size(); i++) {
+        while (chooseItem != 0) {
 
-
-            if (myStore.getListOfProducts().get(i).getIndex() == chooseItem) {
-                System.out.println(myStore.getListOfProducts().get(i).getIndex() + " " + myStore.getListOfProducts().get(i).getName());
-
-                System.out.println("How much do you want ?");
-
-                chooseQuantity = sc.nextInt();
-                result = myStore.getListOfProducts().get(i).getQuantity() - chooseQuantity;
-
-                System.out.println(result);
-
+            if (myStore.getListOfProducts().get(chooseItem).getQuantity() == 0) {
+                System.out.println("No more product available");
 
             } else {
 
-            }
-        }*/
+                System.out.println(myStore.getListOfProducts().get(chooseItem).getIndex() + " " + myStore.getListOfProducts().get(chooseItem).getName());
 
-        while (chooseItem != 0){
+                System.out.println("How much do you want ?");
+                //Choose a quantity
+                chooseQuantity = sc.nextInt();
+                //Subtract the initial quantity to the chosen one
+                result = myStore.getListOfProducts().get(chooseItem).getQuantity() - chooseQuantity;
+                //Update the new quantity
+                myStore.getListOfProducts().get(chooseItem).setQuantity(result);
 
-
-            if (myStore.getListOfProducts().get(chooseItem).getIndex() == chooseItem) {
-
-                if (myStore.getListOfProducts().get(chooseItem).getQuantity() == 0){
-                    System.out.println("No more product available");
-
-                } else {
-
-                    System.out.println(myStore.getListOfProducts().get(chooseItem).getIndex() + " " + myStore.getListOfProducts().get(chooseItem).getName());
-
-                    System.out.println("How much do you want ?");
-                    //Choose a quantity
-                    chooseQuantity = sc.nextInt();
-                    //Subtract the initial quantity to the chosen one
-                    result = myStore.getListOfProducts().get(chooseItem).getQuantity() - chooseQuantity;
-                    //Update the new quantity
-                    myStore.getListOfProducts().get(chooseItem).setQuantity(result);
-
-                    System.out.println("There is " + result + " left");
-
-                    chooseInTheListOfProducts();
-                }
+                System.out.println("There is " + result + " left");
 
             }
+            chooseInTheListOfProducts();
         }
-    }
 
+    }
 }
+

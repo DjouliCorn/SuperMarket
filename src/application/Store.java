@@ -15,4 +15,5 @@ public class Store {
     public ArrayList<Products> getListOfProducts() {
         return listOfProducts;
     }
+
 }

@@ -22,7 +22,7 @@ public class ClientMenu {
 
         switch (numMenuChoice){
             case 1 :
-                new StoreManagement().showListOfProducts();
+                new StoreManagement();
             case 2 :
                 new Cart();
             case 3 :

@@ -8,11 +8,6 @@ public class Cart {
 
     ArrayList<Product> cartItems = new ArrayList<>();
 
-    public void addProducttoCart(int setIndex){
-        Product product = getProductByIndex(setIndex);
-
-    }
-
     private Product getProductByIndex(int setIndex) {
         Product product = null;
         ArrayList<Product> products = new StoreProducts().getProducts();

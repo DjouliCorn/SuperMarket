@@ -1,4 +1,6 @@
 package application;
+import object.StoreProducts;
+
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -20,9 +22,9 @@ public class AdminMenu {
 
         switch (numMenuChoice){
             case 1 :
-                ;
+
             case 2 :
-                ;
+                new StoreProducts().addElement();
             case 3 :
                 ;
             case 4 :

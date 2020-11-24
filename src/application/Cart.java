@@ -1,7 +1,6 @@
 package application;
-
-import Object.Product;
-import Object.StoreProducts;
+import object.Product;
+import object.StoreProducts;
 
 import java.util.ArrayList;
 

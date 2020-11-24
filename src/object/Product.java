@@ -1,6 +1,5 @@
 package object;
-
-public class Products {
+public class Product {
 
     private int index;
     private String name;
@@ -8,7 +7,7 @@ public class Products {
     private float price;
 
     /* List of products available */
-    public Products(int index, String name, int quantity, float price) {
+    public Product(int index, String name, int quantity, float price) {
         this.index = index;
         this.name = name;
         this.quantity = quantity;

@@ -1,4 +1,5 @@
 package application;
+import object.StoreGestion;
 
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class ClientMenu {
 
         switch (numMenuChoice){
             case 1 :
-                new StoreManagement();
+                new StoreGestion();
             case 2 :
                 new Cart();
             case 3 :

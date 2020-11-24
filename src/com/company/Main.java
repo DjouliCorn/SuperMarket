@@ -1,7 +1,5 @@
 package com.company;
-
 import application.HomeMenu;
-
 import java.awt.*;
 
 public class Main {

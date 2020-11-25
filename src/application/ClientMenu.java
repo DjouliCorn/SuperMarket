@@ -23,7 +23,7 @@ public class ClientMenu {
             case 1 :
                 StoreGestion.buyElement();
             case 2 :
-                new Cart();
+                StoreGestion.clientCart.printCartItems();
             case 3 :
                 new HomeMenu();
         }

@@ -1,5 +1,9 @@
 package object;
 
+import application.Cart;
+import application.ClientMenu;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StoreGestion {
@@ -9,15 +13,13 @@ public class StoreGestion {
     static int chooseItem;
     static int chooseQuantity;
     static int result;
+    static StoreProducts allProducts = new StoreProducts();
+    //static ArrayList<Product> getProductForCart = new ArrayList<>();
+    public static Cart clientCart = new Cart();
+
     public StoreGestion() {
 
-        System.out.println("instenciation new");
-
     }
-
-
-    static StoreProducts allProducts = new StoreProducts();
-
 
     public static void addElement() {
 
@@ -49,7 +51,6 @@ public class StoreGestion {
             System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName());
 
         }
-
     }
 
     public static void buyElement() {
@@ -93,15 +94,16 @@ public class StoreGestion {
                     //Update the new quantity
                     allProducts.getProducts().get(chooseItem).setQuantity(result);
 
-                    System.out.println("There is " + result + " left");
+                    clientCart.addToCart(new Product(allProducts.getProducts().get(chooseItem).getIndex(), allProducts.getProducts().get(chooseItem).getName(),
+                            allProducts.getProducts().get(chooseItem).getQuantity(), allProducts.getProducts().get(chooseItem).getPrice()));
+
+                    System.out.println("What you've bought");
+                    clientCart.printCartItems();
                 }
             }
         }
+        new ClientMenu();
     }
-
-
-
-
 }
 
 

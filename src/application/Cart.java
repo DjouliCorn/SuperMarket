@@ -1,6 +1,5 @@
 package application;
 import object.Product;
-import object.StoreProducts;
 
 import java.util.ArrayList;
 
@@ -8,7 +7,7 @@ public class Cart {
 
     ArrayList<Product> cartItems = new ArrayList<>();
 
-    private Product getProductByIndex(int setIndex) {
+    /*private Product getProductByIndex(int setIndex) {
         Product product = null;
         ArrayList<Product> products = new StoreProducts().getProducts();
         for (Product prod: products) {
@@ -18,9 +17,9 @@ public class Cart {
             }
         }
         return product;
-    }
+    }*/
 
-    private void addToCart(Product product){
+    public void addToCart(Product product){
         cartItems.add(product);
     }
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class AdminMenu {
 
-    public AdminMenu(){
+    public static void adminMenu(){
 
         int numMenuChoice;
 
@@ -23,7 +23,7 @@ public class AdminMenu {
 
         switch (numMenuChoice){
             case 1 :
-
+                StoreGestion.buyElement();
             case 2 :
                 StoreGestion.addElement();
             case 3 :
@@ -32,5 +32,4 @@ public class AdminMenu {
                 new HomeMenu();
         }
     }
-
 }

@@ -1,5 +1,4 @@
 package object;
-
 import application.Cart;
 import application.ClientMenu;
 
@@ -47,7 +46,6 @@ public class StoreGestion {
         }
     }
 
-
     public static void buyElement() {
 
         String chooseToContinue;
@@ -59,7 +57,7 @@ public class StoreGestion {
 
             for (int i = 1; i < allProducts.getProducts().size(); i++) {
                 System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName() + " "
-                        + allProducts.getProducts().get(i).getQuantity() + " " + allProducts.getProducts().get(i).getPrice());
+                        +allProducts.getProducts().get(i).getQuantity()+ " " + allProducts.getProducts().get(i).getPrice());
             }
 
             System.out.println("Continue (c) or Quit (q) ?");
@@ -81,18 +79,22 @@ public class StoreGestion {
 
                 } else {
 
-                    System.out.println(allProducts.getProducts().get(chooseItem).getIndex() + " " + allProducts.getProducts().get(chooseItem).getName());
+                    System.out.println(allProducts.getProducts().get(chooseItem).getIndex()+" "
+                            + allProducts.getProducts().get(chooseItem).getName());
 
                     System.out.println("How much do you want ?");
                     //Choose a quantity
                     chooseQuantity = sc.nextInt();
                     //Subtract the initial quantity to the chosen one
                     result = allProducts.getProducts().get(chooseItem).getQuantity() - chooseQuantity;
-                    //Update the new quantity
+                    //Update the new quantity in the product list
                     allProducts.getProducts().get(chooseItem).setQuantity(result);
 
-                    clientCart.addToCart(new Product(allProducts.getProducts().get(chooseItem).getIndex(), allProducts.getProducts().get(chooseItem).getName(),
-                            allProducts.getProducts().get(chooseItem).getQuantity(), allProducts.getProducts().get(chooseItem).getPrice()));
+                    clientCart.addToCart(new Product(
+                            allProducts.getProducts().get(chooseItem).getIndex(),
+                            allProducts.getProducts().get(chooseItem).getName(),
+                            chooseQuantity,
+                            allProducts.getProducts().get(chooseItem).getPrice()));
 
                     System.out.println("What you've bought");
                     clientCart.printCartItems();

@@ -1,6 +1,5 @@
 package application;
 import object.StoreGestion;
-import object.StoreProducts;
 
 import java.util.Scanner;
 

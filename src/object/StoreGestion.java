@@ -3,19 +3,17 @@ package object;
 import application.Cart;
 import application.ClientMenu;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StoreGestion {
 
+    //static ArrayList<Product> getProductForCart = new ArrayList<>();
+    public static Cart clientCart = new Cart();
     static Scanner sc = new Scanner(System.in);
-
     static int chooseItem;
     static int chooseQuantity;
     static int result;
     static StoreProducts allProducts = new StoreProducts();
-    //static ArrayList<Product> getProductForCart = new ArrayList<>();
-    public static Cart clientCart = new Cart();
 
     public StoreGestion() {
 
@@ -56,7 +54,6 @@ public class StoreGestion {
     public static void buyElement() {
 
         String chooseToContinue;
-
         boolean isChoosing = true;
 
         while (isChoosing) {
@@ -69,12 +66,15 @@ public class StoreGestion {
             }
 
             System.out.println("Continue (c) or Quit (q) ?");
-            chooseToContinue = sc.nextLine();
+
+            Scanner newSC = new Scanner(System.in);
+            chooseToContinue = newSC.nextLine();
 
             if (chooseToContinue.equalsIgnoreCase("q")) {
                 isChoosing = false;
+            }
 
-            } else if (chooseToContinue.equalsIgnoreCase("c")) {
+            if (chooseToContinue.equalsIgnoreCase("c")) {
 
                 System.out.println("Choose item");
                 chooseItem = sc.nextInt();

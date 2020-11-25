@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class StoreGestion {
 
-    //static ArrayList<Product> getProductForCart = new ArrayList<>();
     public static Cart clientCart = new Cart();
     static Scanner sc = new Scanner(System.in);
     static int chooseItem;
@@ -15,9 +14,6 @@ public class StoreGestion {
     static int result;
     static StoreProducts allProducts = new StoreProducts();
 
-    public StoreGestion() {
-
-    }
 
     public static void addElement() {
 
@@ -50,6 +46,7 @@ public class StoreGestion {
 
         }
     }
+
 
     public static void buyElement() {
 

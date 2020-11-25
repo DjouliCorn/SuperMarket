@@ -21,7 +21,7 @@ public class ClientMenu {
 
         switch (numMenuChoice){
             case 1 :
-                new StoreGestion();
+                StoreGestion.buyElement();
             case 2 :
                 new Cart();
             case 3 :

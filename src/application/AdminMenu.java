@@ -1,4 +1,5 @@
 package application;
+import object.StoreGestion;
 import object.StoreProducts;
 
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class AdminMenu {
             case 1 :
 
             case 2 :
-                new StoreProducts().addElement();
+                new StoreGestion().addElement();
             case 3 :
                 ;
             case 4 :

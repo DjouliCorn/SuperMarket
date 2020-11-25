@@ -9,12 +9,64 @@ public class StoreGestion {
     int chooseItem;
     int chooseQuantity;
     int result;
-    boolean isChoosing = true;
+
     String chooseToContinue;
+
+    StoreProducts allProducts = null;
 
     public StoreGestion() {
 
-        StoreProducts allProducts = new StoreProducts();
+        System.out.println("instenciation new");
+        allProducts = new StoreProducts();
+        this.initStoreProducts();
+    }
+
+    public void initStoreProducts() {
+        Product product0 = new Product(0, "Case0", 50, 2);
+        Product product1 = new Product(1, "Salad", 50, 2);
+        Product product2 = new Product(2, "Pasta", 300, 0.5f);
+        allProducts.getProducts().add(product0);
+        allProducts.getProducts().add(product1);
+        allProducts.getProducts().add(product2);
+
+    }
+
+    public void addElement() {
+
+        boolean isAdding = true;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Add a new product or Quit (q):");
+
+        while (isAdding) {
+
+            String addProduct = sc.nextLine();
+
+            if (addProduct.equalsIgnoreCase("q")) {
+                isAdding = false;
+
+            } else {
+
+                System.out.println("Add a new product or Quit (q):");
+
+                String newListOfProducts[] = addProduct.split("/");
+
+                Product newProduct = new Product(Integer.parseInt(newListOfProducts[0].trim()), newListOfProducts[1].trim(), Integer.parseInt(newListOfProducts[2].trim()), Float.parseFloat(newListOfProducts[3].trim()));
+                allProducts.getProducts().add(newProduct);
+            }
+        }
+
+        System.out.println("Entire list of products :");
+        for (int i = 1; i < allProducts.getProducts().size(); i++) {
+            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName());
+
+        }
+
+    }
+
+    public static void buyElement() {
+
+        boolean isChoosing = true;
 
         while (isChoosing) {
 
@@ -56,6 +108,10 @@ public class StoreGestion {
             }
         }
     }
+
+
+
+
 }
 
 

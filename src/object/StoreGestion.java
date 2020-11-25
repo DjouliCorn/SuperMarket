@@ -4,34 +4,22 @@ import java.util.Scanner;
 
 public class StoreGestion {
 
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
-    int chooseItem;
-    int chooseQuantity;
-    int result;
-
-    String chooseToContinue;
-
-    StoreProducts allProducts = null;
-
+    static int chooseItem;
+    static int chooseQuantity;
+    static int result;
     public StoreGestion() {
 
         System.out.println("instenciation new");
-        allProducts = new StoreProducts();
-        this.initStoreProducts();
-    }
-
-    public void initStoreProducts() {
-        Product product0 = new Product(0, "Case0", 50, 2);
-        Product product1 = new Product(1, "Salad", 50, 2);
-        Product product2 = new Product(2, "Pasta", 300, 0.5f);
-        allProducts.getProducts().add(product0);
-        allProducts.getProducts().add(product1);
-        allProducts.getProducts().add(product2);
 
     }
 
-    public void addElement() {
+
+    static StoreProducts allProducts = new StoreProducts();
+
+
+    public static void addElement() {
 
         boolean isAdding = true;
         Scanner sc = new Scanner(System.in);
@@ -66,6 +54,8 @@ public class StoreGestion {
 
     public static void buyElement() {
 
+        String chooseToContinue;
+
         boolean isChoosing = true;
 
         while (isChoosing) {
@@ -88,7 +78,7 @@ public class StoreGestion {
                 System.out.println("Choose item");
                 chooseItem = sc.nextInt();
 
-                if (allProducts.getProducts().get(chooseItem).getQuantity() == 0) {
+                if (allProducts.getProducts().get(chooseItem).getQuantity() <= 0) {
                     System.out.println("No more product available");
 
                 } else {

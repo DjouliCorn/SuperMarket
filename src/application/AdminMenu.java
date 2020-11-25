@@ -25,7 +25,7 @@ public class AdminMenu {
             case 1 :
 
             case 2 :
-                new StoreGestion().addElement();
+                StoreGestion.addElement();
             case 3 :
                 ;
             case 4 :

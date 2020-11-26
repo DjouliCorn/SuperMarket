@@ -9,9 +9,9 @@ public class Cart {
 
     ArrayList<Product> cartItems = new ArrayList<>(4);
     static ArrayList<Product> cartItemsAdmin = new ArrayList<>(4);
-    static ArrayList<String> clientName = new ArrayList<>();
-    static ArrayList<Product> allClientPurchase = new ArrayList<>();
     static int totalPrice = 0;
+    //static ArrayList<String> clientName = new ArrayList<>();
+    //static ArrayList<Product> allClientPurchase = new ArrayList<>();
 
 
     public void addToCart(Product product){
@@ -65,21 +65,25 @@ public class Cart {
         System.out.println(" ");
     }
 
-    public static void orderListAdminMenu(){
+
+
+    /*public static void orderListAdminMenu(){
 
         Scanner sc = new Scanner(System.in);
         int numIndex;
+        int i;
 
-        for (int i = 1; i < clientName.size(); i++) {
+        for (i = 1; i < clientName.size(); i++) {
             clientName.add(Login.clientRegister.getFirstName());
-            System.out.println(i+" "+clientName);
         }
+
+        System.out.println(clientName.get(i)+" "+clientName);
 
         for (int i = 1; i < allClientPurchase.size(); i++) {
            allClientPurchase.addAll(cartItemsAdmin);
         }
 
-        for (int i = 1; i < clientName.size(); i++) {
+        for (i = 1; i < clientName.size(); i++) {
             System.out.println("Enter the index of the customer :");
             numIndex = sc.nextInt();
             i = numIndex;
@@ -88,15 +92,13 @@ public class Cart {
             System.out.println(name);
         }
 
-        for (int i = 0; i < clientName.size(); i++) {
-            
+        public E get(int index) {
+            Objects.checkIndex(index, size);
+            return elementData(index);
         }
 
+        for (int i = 0; i < clientName.size(); i++) {
 
-
-
-
-
-
-    }
+        }
+    }*/
 }

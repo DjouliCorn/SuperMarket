@@ -83,13 +83,17 @@ public class StoreGestion {
                             + allProducts.getProducts().get(chooseItem).getName());
 
                     System.out.println("How much do you want ?");
+
                     //Choose a quantity
                     chooseQuantity = sc.nextInt();
+
                     //Subtract the initial quantity to the chosen one
                     result = allProducts.getProducts().get(chooseItem).getQuantity() - chooseQuantity;
+
                     //Update the new quantity in the product list
                     allProducts.getProducts().get(chooseItem).setQuantity(result);
 
+                    //Add the product in the cart
                     clientCart.addToCart(new Product(
                             allProducts.getProducts().get(chooseItem).getIndex(),
                             allProducts.getProducts().get(chooseItem).getName(),

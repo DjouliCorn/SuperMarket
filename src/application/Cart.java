@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class Cart {
 
-    ArrayList<Product> cartItems = new ArrayList<>();
+    ArrayList<Product> cartItems = new ArrayList<>(4);
+    static ArrayList<Product> cartItemsAdmin = new ArrayList<>(4);
+    static int totalPrice = 0;
 
 
     public void addToCart(Product product){
@@ -15,8 +17,6 @@ public class Cart {
     }
 
     public void printCartItems(){
-
-        int totalPrice = 0;
 
         System.out.println("Here the products in the cart :");
 
@@ -41,10 +41,25 @@ public class Cart {
         } else if (chooseCart.equalsIgnoreCase("p")){
 
             System.out.println("Thank you for your purchase, see you soon !");
-
-
+            cartItemsAdmin.addAll(cartItems);
             //erase the cart after the customer buys the products
             cartItems.clear();
+
         }
+    }
+
+    public static void orderListAdmin(){
+
+        System.out.println("Client name");
+        System.out.println(Login.clientRegister.getFirstName());
+
+        System.out.println("Client purchase :");
+        for (Product clientPurchase:cartItemsAdmin) {
+            System.out.println(clientPurchase.getName()+" "+clientPurchase.getQuantity()+" "
+                    +(clientPurchase.getPrice()*clientPurchase.getQuantity()));
+        }
+
+        System.out.println("Total price of the purchase : "+totalPrice);
+        System.out.println(" ");
     }
 }

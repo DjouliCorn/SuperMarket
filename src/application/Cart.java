@@ -9,6 +9,8 @@ public class Cart {
 
     ArrayList<Product> cartItems = new ArrayList<>(4);
     static ArrayList<Product> cartItemsAdmin = new ArrayList<>(4);
+    static ArrayList<String> clientName = new ArrayList<>();
+    static ArrayList<Product> allClientPurchase = new ArrayList<>();
     static int totalPrice = 0;
 
 
@@ -61,5 +63,40 @@ public class Cart {
 
         System.out.println("Total price of the purchase : "+totalPrice);
         System.out.println(" ");
+    }
+
+    public static void orderListAdminMenu(){
+
+        Scanner sc = new Scanner(System.in);
+        int numIndex;
+
+        for (int i = 1; i < clientName.size(); i++) {
+            clientName.add(Login.clientRegister.getFirstName());
+            System.out.println(i+" "+clientName);
+        }
+
+        for (int i = 1; i < allClientPurchase.size(); i++) {
+           allClientPurchase.addAll(cartItemsAdmin);
+        }
+
+        for (int i = 1; i < clientName.size(); i++) {
+            System.out.println("Enter the index of the customer :");
+            numIndex = sc.nextInt();
+            i = numIndex;
+
+            String name = clientName.get(i);
+            System.out.println(name);
+        }
+
+        for (int i = 0; i < clientName.size(); i++) {
+            
+        }
+
+
+
+
+
+
+
     }
 }

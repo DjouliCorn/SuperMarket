@@ -26,7 +26,7 @@ public class AdminMenu {
                 case 2 :
                     StoreGestion.addElement();
                 case 3 :
-                    Cart.orderListAdmin();
+                    Cart.orderListAdminMenu();
                 case 4 :
                     new HomeMenu();
 

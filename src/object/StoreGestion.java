@@ -30,12 +30,22 @@ public class StoreGestion {
 
             } else {
 
-                System.out.println("Add a new product or Quit (q):");
+                //System.out.println("Add a new product or Quit (q):");
 
                 String newListOfProducts[] = addProduct.split("/");
 
-                Product newProduct = new Product(Integer.parseInt(newListOfProducts[0].trim()), newListOfProducts[1].trim(), Integer.parseInt(newListOfProducts[2].trim()), Float.parseFloat(newListOfProducts[3].trim()));
-                allProducts.getProducts().add(newProduct);
+                boolean isExist = verifyIndiceOfItems(newListOfProducts[0], allProducts);
+
+                if (isExist){
+                    System.out.println("This index is already used");
+                } else {
+
+                    Product newProduct = new Product(Integer.parseInt(newListOfProducts[0].trim()), newListOfProducts[1].trim(),
+                            Integer.parseInt(newListOfProducts[2].trim()), Float.parseFloat(newListOfProducts[3].trim()));
+
+                    allProducts.getProducts().add(newProduct);
+                    System.out.println("Item successfully added");
+                }
             }
         }
 
@@ -45,6 +55,20 @@ public class StoreGestion {
 
         }
     }
+
+    private static boolean verifyIndiceOfItems(String index, StoreProducts allProducts){
+
+        boolean isAlredyExist = false;
+        for (int i = 1; i < allProducts.getProducts().size(); i++) {
+            Product itemToVerify = allProducts.getProducts().get(i);
+            if (itemToVerify.getIndex() == Integer.parseInt(index)){
+                isAlredyExist = true;
+                return isAlredyExist;
+            }
+        }
+                return isAlredyExist;
+    }
+
 
     public static void buyElement() {
 

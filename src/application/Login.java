@@ -53,25 +53,33 @@ public class Login {
         System.out.print(" Enter your password or Quit (q) => ");
         String password = sc.nextLine();
 
-        //Comparing if the information entered by the user are the same with the login details
-        if (clientRegister.getFirstName().equals(userName) && clientRegister.getPassword().equals(password)) {
+        if (clientRegister.getFirstName() != null && !clientRegister.getFirstName().trim().isEmpty()
+        && clientRegister.getPassword() != null && !clientRegister.getPassword().trim().isEmpty()) {
 
-            System.out.println(" User successfully logged-in.. ");
-            System.out.println(" ");
-            //If the information is correct, go to the client menu
-            new ClientMenu();
+            //Comparing if the information entered by the user are the same with the login details
+            if (clientRegister.getFirstName().equals(userName) && clientRegister.getPassword().equals(password)) {
 
-        } else if ("q".equalsIgnoreCase(userName) && "q".equalsIgnoreCase(password)) {
+                System.out.println(" User successfully logged-in.. ");
+                System.out.println(" ");
+                //If the information is correct, go to the client menu
+                new ClientMenu();
 
-            //If the user wants to quit the menu
-            new HomeMenu();
+            } else if ("q".equalsIgnoreCase(userName) && "q".equalsIgnoreCase(password)) {
+
+                //If the user wants to quit the menu
+                new HomeMenu();
+
+            } else {
+                //If the information is incorrect
+                System.out.println(" Invalid userName or password ");
+                System.out.println(" ");
+                loginClient();
+            }
 
         } else {
-
-            //If the information is incorrect
-            System.out.println(" Invalid userName or password ");
+            System.out.println("Please, create a client account.");
             System.out.println(" ");
-            loginClient();
+            new HomeMenu();
         }
 
     }

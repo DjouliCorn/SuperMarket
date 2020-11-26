@@ -1,8 +1,8 @@
 package object;
 import application.Cart;
 import application.ClientMenu;
-
 import java.util.Scanner;
+
 
 public class StoreGestion {
 
@@ -99,9 +99,6 @@ public class StoreGestion {
                             allProducts.getProducts().get(chooseItem).getName(),
                             chooseQuantity,
                             allProducts.getProducts().get(chooseItem).getPrice()));
-
-                    System.out.println("What you've bought");
-                    clientCart.printCartItems();
                 }
             }
         }

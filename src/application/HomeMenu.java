@@ -1,5 +1,4 @@
 package application;
-import object.StoreGestion;
 
 import java.util.Scanner;
 
@@ -8,7 +7,6 @@ public class HomeMenu {
     public HomeMenu() {
 
         //First menu to appear, we can choose if we use the app as a client or as an admin
-
 
         boolean keepTrying = true;
 

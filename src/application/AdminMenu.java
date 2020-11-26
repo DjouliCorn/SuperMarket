@@ -1,6 +1,5 @@
 package application;
 import object.StoreGestion;
-
 import java.util.Scanner;
 
 public class AdminMenu {

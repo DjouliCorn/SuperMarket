@@ -1,7 +1,10 @@
 package object;
+
 import application.AdminMenu;
 import application.Cart;
 import application.ClientMenu;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -65,26 +68,51 @@ public class StoreGestion {
 
         //Update of the list of products with the new one
         System.out.println("Entire list of products :");
-        for (int i = 1; i < allProducts.getProducts().size(); i++) {
-            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName()+ " "
-                    +allProducts.getProducts().get(i).getQuantity()+"       "+allProducts.getProducts().get(i).getPrice()+" €/unit");
-            System.out.println(" ");
-        }
+        listOfProduct();
         AdminMenu.adminMenu();
     }
 
     //Method to compare the existed index with the new one
-    private static boolean verifyIndiceOfItems(String index, StoreProducts allProducts){
+    private static boolean verifyIndiceOfItems(String index, StoreProducts allProducts) {
 
         boolean isAlredyExist = false;
         for (int i = 1; i < allProducts.getProducts().size(); i++) {
             Product itemToVerify = allProducts.getProducts().get(i);
-            if (itemToVerify.getIndex() == Integer.parseInt(index)){
+            if (itemToVerify.getIndex() == Integer.parseInt(index)) {
                 isAlredyExist = true;
                 return isAlredyExist;
             }
         }
-                return isAlredyExist;
+        return isAlredyExist;
+    }
+
+
+    public static void listOfProduct() {
+
+        System.out.println(" ");
+        System.out.println("This is a list of products available :");
+        System.out.println(" ");
+
+        //The list of products which are available with the index, the name, the quantity and the price by unit
+        for (int i = 1; i < allProducts.getProducts().size(); i++) {
+            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName() + " "
+                    + allProducts.getProducts().get(i).getQuantity() + "       " + allProducts.getProducts().get(i).getPrice() + " €/unit");
+        }
+
+    }
+
+    public static void listOfProductAdmin() {
+
+        System.out.println(" ");
+        System.out.println("This is a list of products available :");
+        System.out.println(" ");
+
+        //The list of products which are available with the index, the name, the quantity and the price by unit
+        for (int i = 1; i < allProducts.getProducts().size(); i++) {
+            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName() + " "
+                    + allProducts.getProducts().get(i).getQuantity() + "       " + allProducts.getProducts().get(i).getPrice() + " €/unit");
+        }
+        AdminMenu.adminMenu();
     }
 
 
@@ -97,15 +125,7 @@ public class StoreGestion {
         //While the customer is choosing an item, and while is choosing is still true,...
         while (isChoosing) {
 
-            System.out.println(" ");
-            System.out.println("This is a list of products available :");
-            System.out.println(" ");
-
-            //The list of products which are available with the index, the name, the quantity and the price by unit
-            for (int i = 1; i < allProducts.getProducts().size(); i++) {
-                System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName() + " "
-                        +allProducts.getProducts().get(i).getQuantity()+"       "+allProducts.getProducts().get(i).getPrice()+" €/unit");
-            }
+            listOfProduct();
 
             /*The customer chooses if he wants to continue to buy items by pressing the c key
             or to quit the store by pressing the q key. The entries are not case sensitive.*/
@@ -126,54 +146,73 @@ public class StoreGestion {
 
                 //Choose item by the ID
                 System.out.println("Choose item");
-                chooseItem = sc.nextInt();
+                try {
+                    Scanner scan = new Scanner(System.in);
+                    chooseItem = scan.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Wrong answer");
+                    buyElement();
+                }
 
-                //If the stock of items is equal or less than 0, a message pops up
-                if (allProducts.getProducts().get(chooseItem).getQuantity() <= 0) {
-                    System.out.println("No more product available");
+                if (chooseItem <= allProducts.getProducts().size()) {
 
-                } else {
-
-                    //The list of items available
-                    System.out.println(allProducts.getProducts().get(chooseItem).getIndex()+" "
-                            +allProducts.getProducts().get(chooseItem).getName()+" "
-                            +allProducts.getProducts().get(chooseItem).getQuantity()+"       "+allProducts.getProducts().get(chooseItem).getPrice()+" €/unit");
-
-                    System.out.println("How much do you want ?");
-
-                    //Choose a quantity
-                    chooseQuantity = sc.nextInt();
-
-                    //If the user wants more items than available, error message pops up
-                    if (chooseQuantity > allProducts.getProducts().get(chooseItem).getQuantity()){
-                        System.out.println("Not enough items in stock.");
+                    //If the stock of items is equal or less than 0, a message pops up
+                    if (allProducts.getProducts().get(chooseItem).getQuantity() <= 0) {
+                        System.out.println("No more product available");
 
                     } else {
 
-                        //Subtract the initial quantity to the chosen one
-                        result = allProducts.getProducts().get(chooseItem).getQuantity() - chooseQuantity;
+                        //The list of items available
+                        System.out.println(allProducts.getProducts().get(chooseItem).getIndex() + " "
+                                + allProducts.getProducts().get(chooseItem).getName() + " "
+                                + allProducts.getProducts().get(chooseItem).getQuantity() + "       " + allProducts.getProducts().get(chooseItem).getPrice() + " €/unit");
 
-                        //Update the new quantity in the product list
-                        allProducts.getProducts().get(chooseItem).setQuantity(result);
+                        //Choose a quantity
+                        try {
+                            System.out.println("How much do you want ?");
+                            Scanner scan = new Scanner(System.in);
+                            chooseQuantity = scan.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Wrong answer");
+                        }
 
-                        //Add the product in the cart
-                        clientCart.addToCart(new Product(
-                                allProducts.getProducts().get(chooseItem).getIndex(),
-                                allProducts.getProducts().get(chooseItem).getName(),
-                                chooseQuantity,
-                                allProducts.getProducts().get(chooseItem).getPrice()));
+                        //If the user wants more items than available, error message pops up
+                        if (chooseQuantity > allProducts.getProducts().get(chooseItem).getQuantity()) {
+                            System.out.println("Not enough items in stock.");
+
+                        } else {
+
+                            System.out.println("The product is added.");
+                            //Subtract the initial quantity to the chosen one
+                            result = allProducts.getProducts().get(chooseItem).getQuantity() - chooseQuantity;
+
+                            //Update the new quantity in the product list
+                            allProducts.getProducts().get(chooseItem).setQuantity(result);
+
+                            //Add the product in the cart
+                            clientCart.addToCart(new Product(
+                                    allProducts.getProducts().get(chooseItem).getIndex(),
+                                    allProducts.getProducts().get(chooseItem).getName(),
+                                    chooseQuantity,
+                                    allProducts.getProducts().get(chooseItem).getPrice()));
+                        }
                     }
+                } else {
+                    System.out.println("This product doesn't exist");
+                    buyElement();
                 }
-            }
-            //If the user writes something else, a error message pops up
-            if (!chooseToContinue.equalsIgnoreCase("q") && !chooseToContinue.equalsIgnoreCase("c")){
-                System.out.println("Wrong input !");
+                //If the user writes something else, a error message pops up
+                if (!chooseToContinue.equalsIgnoreCase("q") && !chooseToContinue.equalsIgnoreCase("c")) {
+                    System.out.println("Wrong input !");
+                }
             }
         }
         //When the customer wants to quit the buying session, he comes back to the client menu
         new ClientMenu();
     }
 }
+
+
 
 
 

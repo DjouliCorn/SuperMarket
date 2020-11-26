@@ -15,21 +15,6 @@ public class Cart {
         cartItems.add(product);
     }
 
-    /*public void totalCartItems(){
-
-        System.out.println("Here the products in the cart :");
-
-        for (Product prod: cartItems) {
-
-            System.out.println(prod.getIndex()+" "+prod.getName()+" "+prod.getQuantity()+" "+(prod.getPrice()*prod.getQuantity()));
-            //calculate the total price of items stored in the cart
-            totalPrice += (prod.getPrice()*prod.getQuantity());
-        }
-
-        System.out.println("The total price : "+totalPrice);
-
-        printCartItems();
-    }*/
 
     public void printCartItems(){
 
@@ -42,7 +27,6 @@ public class Cart {
             totalPrice += (prod.getPrice()*prod.getQuantity());
             finalPrice += (prod.getPrice()*prod.getQuantity());
         }
-
 
         System.out.println("The total price : "+totalPrice);
 

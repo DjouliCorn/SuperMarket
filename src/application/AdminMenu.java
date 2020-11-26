@@ -30,7 +30,7 @@ public class AdminMenu {
             switch (numMenuChoice){
                 case 1 :
                     //Go to the store to see the list of products which are available
-                    StoreGestion.buyElement();
+                    StoreGestion.listOfProductAdmin();
                 case 2 :
                     //The administrator can add items to the list of products
                     StoreGestion.addElement();

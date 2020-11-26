@@ -1,4 +1,5 @@
 package object;
+import application.AdminMenu;
 import application.Cart;
 import application.ClientMenu;
 import java.util.Scanner;
@@ -14,15 +15,17 @@ public class StoreGestion {
     static StoreProducts allProducts = new StoreProducts();
 
 
+    //Add element to the list of products
     public static void addElement() {
 
         boolean isAdding = true;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Add a new product or Quit (q):");
+        System.out.println("Add a new product splitted by / or Quit (q):");
 
         while (isAdding) {
 
+            //Add products splitted by / or press the q key to quit
             String addProduct = sc.nextLine();
 
             if (addProduct.equalsIgnoreCase("q")) {
@@ -30,32 +33,47 @@ public class StoreGestion {
 
             } else {
 
-                //System.out.println("Add a new product or Quit (q):");
-
+                //Create an array to store the administrator input
                 String newListOfProducts[] = addProduct.split("/");
 
-                boolean isExist = verifyIndiceOfItems(newListOfProducts[0], allProducts);
+                //If the admin input doesn't give the right number of information
+                if (newListOfProducts.length < 4) {
+                    System.out.println("Not enough information about the product");
+                    System.out.println("Try again :");
 
-                if (isExist){
-                    System.out.println("This index is already used");
+                    //If the number of information is right
                 } else {
+                    boolean isExist = verifyIndiceOfItems(newListOfProducts[0], allProducts);
 
-                    Product newProduct = new Product(Integer.parseInt(newListOfProducts[0].trim()), newListOfProducts[1].trim(),
-                            Integer.parseInt(newListOfProducts[2].trim()), Float.parseFloat(newListOfProducts[3].trim()));
+                    //Verifying if the index of the new item already exists
+                    if (isExist) {
+                        System.out.println("This index is already used");
+                    } else {
 
-                    allProducts.getProducts().add(newProduct);
-                    System.out.println("Item successfully added");
+                        //The new product is created
+                        Product newProduct = new Product(Integer.parseInt(newListOfProducts[0].trim()), newListOfProducts[1].trim(),
+                                Integer.parseInt(newListOfProducts[2].trim()), Float.parseFloat(newListOfProducts[3].trim()));
+
+                        //The new product is added in the array
+                        allProducts.getProducts().add(newProduct);
+                        System.out.println("Item successfully added");
+                        System.out.println("Add an other one or Quit (q)");
+                    }
                 }
             }
         }
 
+        //Update of the list of products with the new one
         System.out.println("Entire list of products :");
         for (int i = 1; i < allProducts.getProducts().size(); i++) {
-            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName());
-
+            System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName()+ " "
+                    +allProducts.getProducts().get(i).getQuantity()+"       "+allProducts.getProducts().get(i).getPrice()+" €/unit");
+            System.out.println(" ");
         }
+        AdminMenu.adminMenu();
     }
 
+    //Method to compare the existed index with the new one
     private static boolean verifyIndiceOfItems(String index, StoreProducts allProducts){
 
         boolean isAlredyExist = false;
@@ -70,6 +88,7 @@ public class StoreGestion {
     }
 
 
+    //Buy elements from the list of products
     public static void buyElement() {
 
         String chooseToContinue;

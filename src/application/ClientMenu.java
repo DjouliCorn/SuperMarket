@@ -10,10 +10,10 @@ public class ClientMenu {
 
         while (keepTrying) {
 
-            //Welcome to the client menu panel where the customer can see the list of products, go shopping and logout if he wants
-            System.out.println("*********");
+            //Welcome to the customer menu panel where the customer can see the list of products, go shopping and logout if he wants
+            System.out.println("******************");
             System.out.println("Welcome "+Login.clientRegister.getFirstName()+" !");
-            System.out.println("*********");
+            System.out.println("******************");
             System.out.println(" ");
             System.out.println("What do you want to do ?");
             System.out.println(" ");

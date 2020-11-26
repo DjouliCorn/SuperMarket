@@ -6,7 +6,8 @@ public class Product {
     private int quantity;
     private float price;
 
-    /* List of products available */
+    //Structure of a product
+
     public Product(int index, String name, int quantity, float price) {
         this.index = index;
         this.name = name;

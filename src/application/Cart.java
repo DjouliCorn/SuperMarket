@@ -1,7 +1,6 @@
 package application;
 import object.Product;
 import object.StoreGestion;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,13 +9,27 @@ public class Cart {
     ArrayList<Product> cartItems = new ArrayList<>(4);
     static ArrayList<Product> cartItemsAdmin = new ArrayList<>(4);
     static int totalPrice = 0;
-    //static ArrayList<String> clientName = new ArrayList<>();
-    //static ArrayList<Product> allClientPurchase = new ArrayList<>();
-
+    static int finalPrice = 0;
 
     public void addToCart(Product product){
         cartItems.add(product);
     }
+
+    /*public void totalCartItems(){
+
+        System.out.println("Here the products in the cart :");
+
+        for (Product prod: cartItems) {
+
+            System.out.println(prod.getIndex()+" "+prod.getName()+" "+prod.getQuantity()+" "+(prod.getPrice()*prod.getQuantity()));
+            //calculate the total price of items stored in the cart
+            totalPrice += (prod.getPrice()*prod.getQuantity());
+        }
+
+        System.out.println("The total price : "+totalPrice);
+
+        printCartItems();
+    }*/
 
     public void printCartItems(){
 
@@ -25,10 +38,11 @@ public class Cart {
         for (Product prod: cartItems) {
 
             System.out.println(prod.getIndex()+" "+prod.getName()+" "+prod.getQuantity()+" "+(prod.getPrice()*prod.getQuantity()));
-
             //calculate the total price of items stored in the cart
             totalPrice += (prod.getPrice()*prod.getQuantity());
+            finalPrice += (prod.getPrice()*prod.getQuantity());
         }
+
 
         System.out.println("The total price : "+totalPrice);
 
@@ -46,7 +60,10 @@ public class Cart {
             cartItemsAdmin.addAll(cartItems);
             //erase the cart after the customer buys the products
             cartItems.clear();
+            totalPrice =0;
 
+        } else {
+            System.out.println("Wrong input");
         }
     }
 
@@ -61,44 +78,7 @@ public class Cart {
                     +(clientPurchase.getPrice()*clientPurchase.getQuantity()));
         }
 
-        System.out.println("Total price of the purchase : "+totalPrice);
+        System.out.println("Total price of the purchase : "+finalPrice);
         System.out.println(" ");
     }
-
-
-
-    /*public static void orderListAdminMenu(){
-
-        Scanner sc = new Scanner(System.in);
-        int numIndex;
-        int i;
-
-        for (i = 1; i < clientName.size(); i++) {
-            clientName.add(Login.clientRegister.getFirstName());
-        }
-
-        System.out.println(clientName.get(i)+" "+clientName);
-
-        for (int i = 1; i < allClientPurchase.size(); i++) {
-           allClientPurchase.addAll(cartItemsAdmin);
-        }
-
-        for (i = 1; i < clientName.size(); i++) {
-            System.out.println("Enter the index of the customer :");
-            numIndex = sc.nextInt();
-            i = numIndex;
-
-            String name = clientName.get(i);
-            System.out.println(name);
-        }
-
-        public E get(int index) {
-            Objects.checkIndex(index, size);
-            return elementData(index);
-        }
-
-        for (int i = 0; i < clientName.size(); i++) {
-
-        }
-    }*/
 }

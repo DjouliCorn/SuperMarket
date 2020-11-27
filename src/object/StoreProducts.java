@@ -5,6 +5,7 @@ public class StoreProducts {
 
     private final ArrayList<Product> products = new ArrayList<>();
 
+    //The products are available at the start of the program
     public StoreProducts() {
 
         Product product0 = new Product(0, "Case0", 50, 2);

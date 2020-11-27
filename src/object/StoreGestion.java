@@ -6,14 +6,11 @@ import application.ClientMenu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class StoreGestion {
 
     public static Cart clientCart = new Cart();
-    static Scanner sc = new Scanner(System.in);
     static int chooseItem;
     static int chooseQuantity;
     static int result;
@@ -67,7 +64,6 @@ public class StoreGestion {
                 }
             }
         }
-
         //Update of the list of products with the new one
         System.out.println("Entire list of products :");
         listOfProduct();
@@ -80,12 +76,14 @@ public class StoreGestion {
         boolean isAlredyExist = false;
         for (int i = 1; i < allProducts.getProducts().size(); i++) {
             Product itemToVerify = allProducts.getProducts().get(i);
+
+            //If the index is not an integer, there is a message that pops up
             try {
                 if (itemToVerify.getIndex() == Integer.parseInt(index)) {
                     isAlredyExist = true;
                     return isAlredyExist;
                 }
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Please, enter a number for the index");
                 addElement();
             }
@@ -93,7 +91,6 @@ public class StoreGestion {
         }
         return isAlredyExist;
     }
-
 
     public static void listOfProduct() {
 
@@ -106,7 +103,6 @@ public class StoreGestion {
             System.out.println(allProducts.getProducts().get(i).getIndex() + " " + allProducts.getProducts().get(i).getName() + " "
                     + allProducts.getProducts().get(i).getQuantity() + "       " + allProducts.getProducts().get(i).getPrice() + " €/unit");
         }
-
     }
 
     public static void listOfProductAdmin() {
@@ -166,7 +162,7 @@ public class StoreGestion {
                 boolean isExist = false;
                 int indexItem = -1;
                 for (int i = 0; i < allProducts.getProducts().size(); i++) {
-                    if (allProducts.getProducts().get(i).getIndex() == chooseItem){
+                    if (allProducts.getProducts().get(i).getIndex() == chooseItem) {
                         indexItem = i;
                         isExist = true;
                     }

@@ -2,10 +2,11 @@ package application;
 
 public class Register {
 
-
+    //Blueprint that create an account
     private String firstName;
     private String password;
 
+    //The nickname
     public String getFirstName() {
         return firstName;
     }
@@ -14,8 +15,8 @@ public class Register {
         this.firstName = firstName;
     }
 
-    public String getPassword(){
-
+    //The password
+    public String getPassword() {
         return password;
     }
 
@@ -26,6 +27,6 @@ public class Register {
     @Override
     public String toString() {
         return "Register [firstName = " + firstName + ", password =" +
-                password +"]";
+                password + "]";
     }
 }

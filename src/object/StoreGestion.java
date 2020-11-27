@@ -6,6 +6,8 @@ import application.ClientMenu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class StoreGestion {
@@ -43,9 +45,9 @@ public class StoreGestion {
                 if (newListOfProducts.length < 4) {
                     System.out.println("Not enough information about the product");
                     System.out.println("Try again :");
-
                     //If the number of information is right
                 } else {
+
                     boolean isExist = verifyIndiceOfItems(newListOfProducts[0], allProducts);
 
                     //Verifying if the index of the new item already exists
@@ -78,10 +80,16 @@ public class StoreGestion {
         boolean isAlredyExist = false;
         for (int i = 1; i < allProducts.getProducts().size(); i++) {
             Product itemToVerify = allProducts.getProducts().get(i);
-            if (itemToVerify.getIndex() == Integer.parseInt(index)) {
-                isAlredyExist = true;
-                return isAlredyExist;
+            try {
+                if (itemToVerify.getIndex() == Integer.parseInt(index)) {
+                    isAlredyExist = true;
+                    return isAlredyExist;
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Please, enter a number for the index");
+                addElement();
             }
+
         }
         return isAlredyExist;
     }
@@ -154,7 +162,19 @@ public class StoreGestion {
                     buyElement();
                 }
 
-                if (chooseItem <= allProducts.getProducts().size()) {
+                //link the index of the product in the arraylist with the index entered by the user (chooseItem)
+                boolean isExist = false;
+                int indexItem = -1;
+                for (int i = 0; i < allProducts.getProducts().size(); i++) {
+                    if (allProducts.getProducts().get(i).getIndex() == chooseItem){
+                        indexItem = i;
+                        isExist = true;
+                    }
+                }
+                chooseItem = indexItem;
+
+
+                if (isExist) {
 
                     //If the stock of items is equal or less than 0, a message pops up
                     if (allProducts.getProducts().get(chooseItem).getQuantity() <= 0) {
@@ -197,6 +217,7 @@ public class StoreGestion {
                                     allProducts.getProducts().get(chooseItem).getPrice()));
                         }
                     }
+
                 } else {
                     System.out.println("This product doesn't exist");
                     buyElement();

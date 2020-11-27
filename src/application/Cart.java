@@ -9,7 +9,7 @@ public class Cart {
     ArrayList<Product> cartItems = new ArrayList<>(4);
     static ArrayList<Product> cartItemsAdmin = new ArrayList<>(4);
     static int totalPrice = 0;
-    static int finalPrice = 0;
+
 
     public void addToCart(Product product){
         cartItems.add(product);
@@ -19,13 +19,13 @@ public class Cart {
     public void printCartItems(){
 
         System.out.println("Here the products in the cart :");
-
+        totalPrice = 0;
         for (Product prod: cartItems) {
 
             System.out.println(prod.getIndex()+" "+prod.getName()+" "+prod.getQuantity()+" "+(prod.getPrice()*prod.getQuantity()));
             //calculate the total price of items stored in the cart
             totalPrice += (prod.getPrice()*prod.getQuantity());
-            finalPrice += (prod.getPrice()*prod.getQuantity());
+
         }
 
         System.out.println("The total price : "+totalPrice);
@@ -44,7 +44,7 @@ public class Cart {
             cartItemsAdmin.addAll(cartItems);
             //erase the cart after the customer buys the products
             cartItems.clear();
-            totalPrice =0;
+
 
         } else {
             System.out.println("Wrong input");
@@ -62,7 +62,7 @@ public class Cart {
                     +(clientPurchase.getPrice()*clientPurchase.getQuantity()));
         }
 
-        System.out.println("Total price of the purchase : "+finalPrice);
+        System.out.println("Total price of the purchase : "+totalPrice);
         System.out.println(" ");
     }
 }

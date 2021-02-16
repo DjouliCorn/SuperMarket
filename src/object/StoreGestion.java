@@ -23,7 +23,7 @@ public class StoreGestion {
         boolean isAdding = true;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Add a new product splitted by / or Quit (q):");
+        System.out.println("Add a new product : index/name/quantity/price or Quit (q):");
 
         while (isAdding) {
 
